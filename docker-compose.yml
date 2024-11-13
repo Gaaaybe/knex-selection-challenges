@@ -4,13 +4,13 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: knex-challenge
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=knex-challenge
     volumes:
       - ./data:/data/postgres
     ports:
-      - "5422:5422"
+      - "5432:5432"
 
   app:
     build: .
