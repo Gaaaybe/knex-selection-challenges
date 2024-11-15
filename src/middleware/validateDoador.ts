@@ -6,7 +6,7 @@ const doadorSchema = z.object({
   email: z.string().email("Email inválido"),
   telefone: z
     .string()
-    .regex(/^\(\d{2}\) \d{4,5}-\d{4}$/, "Telefone invál.ido")
+    .regex(/^\(\d{2}\) \d{4,5}-\d{4}$/, "Telefone inválido")
     .optional(),
 });
 
