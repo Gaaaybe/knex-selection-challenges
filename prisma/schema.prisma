@@ -3,6 +3,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum DoacaoStatus {
+  pendente
+  confirmada
+  cancelada
+}
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -15,12 +21,11 @@ model Doador {
   data_cadastro DateTime @default(now())
   doacoes      Doacao[]
 }
-
 model Doacao {
   id              Int       @id @default(autoincrement())
   valor           Float
   mensagem        String?
-  status          String
+  status          DoacaoStatus @default(pendente)
   data_criacao    DateTime @default(now())
   data_confirmacao DateTime?
   doadorId        Int
@@ -32,7 +37,7 @@ model Pagamento {
   id              Int       @id @default(autoincrement())
   chave_pix       String
   qr_code         String
-  status          String
+  status          DoacaoStatus @default(pendente)
   data_criacao    DateTime @default(now())
   data_expiracao  DateTime
   data_confirmacao DateTime?
