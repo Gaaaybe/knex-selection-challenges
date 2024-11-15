@@ -1,4 +1,4 @@
-import { Doacao } from "@prisma/client";
+import { Doacao, DoacaoStatus } from "@prisma/client";
 import DoacaoRepository from "../repositories/doacaoRepository";
 import { Request, Response } from "express";
 
@@ -48,7 +48,7 @@ class DoacaoController {
         periodoFim: periodoFim ? new Date(periodoFim as string) : undefined,
         valorMin: valorMin ? Number(valorMin) : undefined,
         valorMax: valorMax ? Number(valorMax) : undefined,
-        status: status as string,
+        status: status as DoacaoStatus,
       });
       res.json(doacoes);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

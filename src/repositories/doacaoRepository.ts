@@ -1,5 +1,5 @@
 import { prisma } from "../services/prisma";
-import { Doacao } from "@prisma/client";
+import { Doacao, DoacaoStatus } from "@prisma/client";
 
 class DoacaoRepository {
   static async getDoacoes() {
@@ -41,7 +41,7 @@ class DoacaoRepository {
     periodoFim?: Date;
     valorMin?: number;
     valorMax?: number;
-    status?: string;
+    status?: DoacaoStatus;
   }) {
     return prisma.doacao.findMany({
       where: {

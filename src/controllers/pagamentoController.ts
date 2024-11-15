@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import PagamentoRepository from "../repositories/pagamentoRepository";
 import DoacaoRepository from "../repositories/doacaoRepository";
 import { v4 as uuidv4 } from "uuid";
+import { DoacaoStatus } from "@prisma/client";
 
 class PagamentoController {
   static async gerarQRCodePIX(req: Request, res: Response) {
@@ -20,7 +21,7 @@ class PagamentoController {
       const pagamentoData = {
         chave_pix,
         qr_code,
-        status: "pendente",
+        status: DoacaoStatus.pendente,
         data_expiracao,
         doacaoId,
       };
@@ -52,7 +53,7 @@ class PagamentoController {
       const pagamentoAtualizado = await PagamentoRepository.updatePagamento(
         pagamentoId,
         {
-          status: "confirmado",
+          status: "confirmada",
           data_confirmacao: new Date(),
         },
       );
